@@ -1,3 +1,16 @@
+CREATE TABLE manufacturers (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(128),
+    country VARCHAR(50),
+    description TEXT
+);
+
+CREATE TABLE categories (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(128),
+    description TEXT
+);
+
 CREATE TABLE products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255),
@@ -7,19 +20,6 @@ CREATE TABLE products (
     price DECIMAL(10, 2),
     category_id UUID REFERENCES categories(id),
     stock_quantity INT
-);
-
-CREATE TABLE categories (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(128),
-    description TEXT
-);
-
-CREATE TABLE manufacturers (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(128),
-    country VARCHAR(50),
-    description TEXT
 );
 
 CREATE TABLE users (
