@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  psql:
+    image: postgres:latest
+    container_name: online-store-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sixojke
+      POSTGRES_PASSWORD: ~sBjwg83{C~?gbg4FY~7e1gyo}$kD7Q~
+      POSTGRES_DB: postgres
+      DB_USER: member
+      DB_PASSWORD: j@bBXQQrMSYmO2JKGk2yGOA1*fY5MELV
+      DB_NAME: online_store
+    volumes:
+      - /home/sixojke/online-store:var/lib/postgresql/data
+    ports:
+      - "5432:5432"
