@@ -3,9 +3,9 @@ CREATE TABLE products (
     name VARCHAR(255),
     description TEXT,
     image_url TEXT,
-    manufacturer_id UUID,
+    manufacturer_id UUID REFERENCES manufacturers(id),
     price DECIMAL(10, 2),
-    category_id UUID,
+    category_id UUID REFERENCES categories(id),
     stock_quantity INT
 );
 
@@ -35,15 +35,15 @@ CREATE TABLE users (
 CREATE TABLE orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     date TIMESTAMP DEFAULT now(),
-    product_id UUID,
+    product_id UUID REFERENCES products(id),
     status VARCHAR(50),
     amount DECIMAL(10, 2),
-    user_id UUID
+    user_id UUID REFERENCES users(id)
 );
 
 CREATE TABLE cart (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    product_id UUID,
+    product_id UUID REFERENCES products(id),
     quantity BIGINT,
-    user_id UUID
+    user_id UUID REFERENCES users(id)
 );
