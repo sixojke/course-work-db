@@ -6,12 +6,9 @@ services:
     restart: always
     environment:
       POSTGRES_USER: sixojke
-      POSTGRES_PASSWORD: ~sBjwg83{C~?gbg4FY~7e1gyo}$kD7Q~
+      POSTGRES_PASSWORD: sixojke
       POSTGRES_DB: postgres
-      DB_USER: member
-      DB_PASSWORD: j@bBXQQrMSYmO2JKGk2yGOA1*fY5MELV
-      DB_NAME: online_store
     volumes:
       - /home/sixojke/online-store:var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5433"
