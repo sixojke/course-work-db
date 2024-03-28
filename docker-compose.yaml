@@ -11,4 +11,4 @@ services:
     volumes:
       - /home/sixojke/online-store:var/lib/postgresql/data
     ports:
-      - "5433:5433"
+      - "5444:5444"
