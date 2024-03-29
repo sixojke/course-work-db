@@ -11,7 +11,7 @@ type PostgresConfig struct {
 
 func NewPostgresConfig() *PostgresConfig {
 	return &PostgresConfig{
-		Host:     "192.168.1.199",
+		Host:     "localhost",
 		Port:     "5432",
 		Username: "sixojke",
 		Password: "sixojke",

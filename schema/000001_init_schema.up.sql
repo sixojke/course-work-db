@@ -1,33 +1,33 @@
 CREATE TABLE manufacturers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(128),
-    country VARCHAR(50),
+    name VARCHAR(128) NOT NULL,
+    country VARCHAR(50) NOT NULL,
     description TEXT
 );
 
 CREATE TABLE categories (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(128),
-    description TEXT
+    name VARCHAR(128) NOT NULL,
+    description TEXT NOT NULL
 );
 
 CREATE TABLE products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
     description TEXT,
     image_url TEXT,
     manufacturer_id UUID REFERENCES manufacturers(id),
-    price DECIMAL(10, 2),
+    price DECIMAL(10, 2) NOT NULL,
     category_id UUID REFERENCES categories(id),
-    stock_quantity INT
+    stock_quantity INT NOT NULL
 );
 
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email VARCHAR(50),
-    username VARCHAR(32),
-    password TEXT,
-    contact_info TEXT,
+    email VARCHAR(50) UNIQUE,
+    username VARCHAR(32) NOT NULL,
+    password TEXT NOT NULL,
+    contact_info TEXT NOT NULL,
     preferences TEXT,
     order_history UUID[]
 );
@@ -36,14 +36,15 @@ CREATE TABLE orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     date TIMESTAMP DEFAULT now(),
     product_id UUID REFERENCES products(id),
-    status VARCHAR(50),
-    amount DECIMAL(10, 2),
-    user_id UUID REFERENCES users(id)
+    status VARCHAR(50) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    user_id UUID REFERENCES users(id),
+    address TEXT NOT NULL
 );
 
 CREATE TABLE cart (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     product_id UUID REFERENCES products(id),
-    quantity BIGINT,
+    quantity BIGINT NOT NULL,
     user_id UUID REFERENCES users(id)
 );
