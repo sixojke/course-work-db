@@ -28,8 +28,7 @@ CREATE TABLE users (
     username VARCHAR(32) NOT NULL,
     password TEXT NOT NULL,
     contact_info TEXT NOT NULL,
-    preferences TEXT,
-    order_history UUID[]
+    preferences TEXT
 );
 
 CREATE TABLE orders (
@@ -38,7 +37,6 @@ CREATE TABLE orders (
     product_id UUID REFERENCES products(id),
     status VARCHAR(50) NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    user_id UUID REFERENCES users(id),
     address TEXT NOT NULL
 );
 
@@ -47,4 +45,9 @@ CREATE TABLE cart (
     product_id UUID REFERENCES products(id),
     quantity BIGINT NOT NULL,
     user_id UUID REFERENCES users(id)
+);
+
+CREATE TABLE user_orders (
+  user_id UUID REFERENCES users(id), 
+  order_id UUID REFERENCES orders(id)
 );
